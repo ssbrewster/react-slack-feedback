@@ -23,7 +23,8 @@ const propTypes = {
   showChannel: PropTypes.bool,
   title: PropTypes.node,
   closeButton: PropTypes.node,
-  messagePlaceholderText: PropTypes.string
+  messagePlaceholderText: PropTypes.string,
+  success: PropTypes.node
 };
 
 const defaultProps = {
@@ -39,7 +40,8 @@ const defaultProps = {
   showChannel: true,
   title: <span><SlackIcon /> Send Feedback to Slack</span>,
   closeButton: 'close',
-  messagePlaceholderText: 'Message...'
+  messagePlaceholderText: 'Message...',
+  success: 'Sent!'
 };
 
 const types = [
@@ -326,7 +328,7 @@ class SlackFeedback extends Component {
 
     var submitText = 'Send Feedback';
 
-    if (sent) submitText = 'Sent!';
+    if (sent) submitText = this.props.success;
     if (sending && !sent) submitText = 'Sending Feedback...';
     if (error) submitText = error;
 
@@ -338,7 +340,7 @@ class SlackFeedback extends Component {
         <div
           ref="container"
           style={this.props.contentStyles}
-          class="SlackFeedback--container fadeInUp">
+          class="SlackFeedback--container">
           <div class="SlackFeedback--header">
             {this.props.title}
             <div class="close" onClick={this.close}>{this.props.closeButton}</div>
