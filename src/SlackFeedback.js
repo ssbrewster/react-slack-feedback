@@ -22,7 +22,8 @@ const propTypes = {
   contentStyles: PropTypes.object,
   showChannel: PropTypes.bool,
   title: PropTypes.node,
-  closeButton: PropTypes.node
+  closeButton: PropTypes.node,
+  messagePlaceholderText: PropTypes.string
 };
 
 const defaultProps = {
@@ -37,7 +38,8 @@ const defaultProps = {
   contentStyles: {},
   showChannel: true,
   title: <span><SlackIcon /> Send Feedback to Slack</span>,
-  closeButton: 'close'
+  closeButton: 'close',
+  messagePlaceholderText: 'Message...'
 };
 
 const types = [
@@ -361,7 +363,7 @@ class SlackFeedback extends Component {
             </ul>
 
             <label class="SlackFeedback--label">Your Message</label>
-            <textarea ref="message" class="SlackFeedback--textarea" placeholder="Message..." />
+            <textarea ref="message" class="SlackFeedback--textarea" placeholder={this.props.messagePlaceholderText} />
 
             {/* Only render the image upload if there's callback available  */}
             {this.props.onImageUpload ? this.renderImageUpload() : null}
